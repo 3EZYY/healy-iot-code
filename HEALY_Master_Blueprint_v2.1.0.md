@@ -1091,14 +1091,14 @@ Hubungkan usecase dengan repository interface. Pastikan usecase tidak langsung i
 - JWT middleware.
 - Router setup.
 
-### FASE 4 — Frontend Foundation + Landing Page ⬜
+### FASE 4 — Frontend Foundation + Landing Page (DONE ✅)
 
 - Setup design tokens, tailwind config, globals.css.
 - Shared components: SensorCard, StatusChip, AlertToast, NavSidebar.
 - Landing Page dengan animasi.
 - Login Page.
 
-### FASE 5 — Frontend Dashboard Real-Time ⬜
+### FASE 5 — Frontend Dashboard Real-Time (DONE ✅)
 
 - `useWebSocket` hook + mock generator.
 - Dashboard page: 3 sensor cards, alert feed, connection status.
@@ -1137,8 +1137,12 @@ Hubungkan usecase dengan repository interface. Pastikan usecase tidak langsung i
 | Config | `pkg/config/config.go` | ✅ DONE | |
 | Frontend | Design tokens + Tailwind | ✅ DONE | Tailwind v4 @theme, globals.css, design-tokens.ts |
 | Frontend | SensorCard, StatusChip | ✅ DONE | + NavSidebar, glass-card, framer-motion |
-| Frontend | Dashboard page | ✅ DONE | Mock data scaffold, sensor grid, activity feed |
+| Frontend | Dashboard page | ✅ DONE | Real-time integration via useTelemetry hook |
 | Frontend | Landing page | ✅ DONE | Hero section, features, login page |
+| Frontend | `hooks/useWebSocket.ts` | ✅ DONE | Blueprint §5.2, exponential backoff reconnect |
+| Frontend | `lib/mock-telemetry.ts` | ✅ DONE | Blueprint §5.3, 80/15/5 distribution |
+| Frontend | `hooks/useTelemetry.ts` | ✅ DONE | Bridge hook: mock ↔ WebSocket |
+| Frontend | `ConnectionStatus.tsx` | ✅ DONE | Live connection state indicator |
 
 ---
 
