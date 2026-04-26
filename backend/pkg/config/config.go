@@ -5,6 +5,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -19,6 +21,8 @@ type Config struct {
 }
 
 func LoadConfig() *Config {
+	// Attempt to load .env file
+	_ = godotenv.Load()
 	// Parse CORS allowed origins into a slice
 	var corsOrigins []string
 	corsStr := getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:3000")
