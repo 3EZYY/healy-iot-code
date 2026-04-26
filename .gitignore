@@ -26,3 +26,6 @@ Thumbs.db
 # HAPUS baris "frontend/" dari sini agar folder frontend bisa di-push!
 # Kalau mau proteksi extra, lu bisa tambah "backend/" di sini 
 # TAPI hanya jika lu yakin nggak akan nyentuh backend sama sekali di branch ini.
+
+.agent
+GEMINI.md
