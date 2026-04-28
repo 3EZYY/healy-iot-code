@@ -36,19 +36,10 @@ export default function StatusChip({ status, label, size = 'md', pulse = false }
 
   return (
     <span
-      className={`
-        inline-flex items-center gap-1.5 font-body font-medium
-        ${config.bg} ${config.text}
-        ${size === 'sm' ? 'px-2 py-0.5 text-xs rounded-md' : 'px-3 py-1 text-sm rounded-full'}
-      `}
+      className={`inline-flex items-center gap-1.5 font-body font-medium ${config.bg} ${config.text} ${size === 'sm' ? 'px-2 py-0.5 text-xs rounded-md' : 'px-3 py-1 text-sm rounded-full'}`}
     >
       <span
-        className={`
-          inline-block rounded-full
-          ${size === 'sm' ? 'w-1.5 h-1.5' : 'w-2 h-2'}
-          ${config.dot}
-          ${shouldPulse ? 'animate-pulse-critical' : ''}
-        `}
+        className={`inline-block rounded-full ${size === 'sm' ? 'w-1.5 h-1.5' : 'w-2 h-2'} ${config.dot} ${shouldPulse ? 'animate-pulse-critical' : ''}`}
       />
       {label || config.label}
     </span>

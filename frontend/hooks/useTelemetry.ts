@@ -41,12 +41,12 @@ function useMockTelemetry(
   onMessage?: (data: WebSocketMessage) => void,
   onStatusChange?: (status: ConnectionState['status']) => void
 ): TelemetrySource {
-  const [data, setData] = useState<TelemetryPayload | null>(() => generateMockPayload())
-  const [conn, setConn] = useState<ConnectionState>(() => ({
-    status: 'CONNECTED',
-    lastUpdate: new Date(),
+  const [data, setData] = useState<TelemetryPayload | null>(null)
+  const [conn, setConn] = useState<ConnectionState>({
+    status: 'DISCONNECTED',
+    lastUpdate: null,
     retryCount: 0,
-  }))
+  })
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const onMessageRef = useRef(onMessage)
   const onStatusRef = useRef(onStatusChange)
@@ -57,8 +57,13 @@ function useMockTelemetry(
   }, [onMessage, onStatusChange])
 
   useEffect(() => {
-    // Notify "connection established" for mock
+    // Initialize first connection state and payload
     onStatusRef.current?.('CONNECTED')
+    setConn({ status: 'CONNECTED', lastUpdate: new Date(), retryCount: 0 })
+    
+    const initialPayload = generateMockPayload()
+    onMessageRef.current?.(initialPayload)
+    setData(initialPayload)
 
     // Generate every MOCK_INTERVAL_MS
     intervalRef.current = setInterval(() => {
