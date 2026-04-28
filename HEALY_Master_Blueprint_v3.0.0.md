@@ -1342,11 +1342,11 @@ Hubungkan `useAutoNarrative`, state `alerts`, dan komponen `AlertFeed` sesuai Se
 | Frontend | `src/constants/design-tokens.ts` | ✅ DONE | Added 4 new color tokens |
 | Frontend | `src/types/telemetry.ts` | ✅ DONE | Added SystemMessage & WebSocketMessage union |
 | Frontend | `src/hooks/useWebSocket.ts` | ✅ DONE | Handled system messages + Exposed deviceOnline |
-| Frontend | `src/hooks/useAutoNarrative.ts` | ⬜ TODO | **NEW v3.0** Phase 11 |
+| Frontend | `src/hooks/useAutoNarrative.ts` | ✅ DONE | **NEW v3.0** Phase 11 |
 | Frontend | `src/lib/groq-client.ts` | ✅ DONE | Groq REST integration with streaming |
 | Frontend | `src/components/features/DeviceLedIndicator.tsx` | ✅ DONE | Framer Motion pulse animation |
 | Frontend | `src/components/features/AIInsightCard.tsx` | ✅ DONE | On-demand AI insight generation |
-| Frontend | `src/components/features/AlertFeed.tsx` | ⬜ TODO | **MODIFY v3.0**: tampilkan AI narrative |
+| Frontend | `src/components/features/AlertFeed.tsx` | ✅ DONE | **MODIFY v3.0**: tampilkan AI narrative |
 | Frontend | `src/components/features/NavSidebar.tsx` | ✅ DONE | Added GroqKeySection with mask/save |
 | Frontend | `src/app/dashboard/page.tsx` | ✅ DONE | Integrated Phase 10 components |
 | Frontend | Design tokens + Tailwind | ✅ DONE | Base design system v2.1 |

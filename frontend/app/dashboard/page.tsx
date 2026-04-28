@@ -7,8 +7,10 @@ import StatusChip from '@/components/features/StatusChip'
 import ConnectionStatus from '@/components/features/ConnectionStatus'
 import { DeviceLedIndicator } from '@/components/features/DeviceLedIndicator'
 import { AIInsightCard } from '@/components/features/AIInsightCard'
+import AlertFeed from '@/components/features/AlertFeed'
 import { useTelemetry } from '@/hooks/useTelemetry'
-import { Activity, Clock, Bell } from 'lucide-react'
+import { useAutoNarrative } from '@/hooks/useAutoNarrative'
+import { Activity, Clock, Bell, AlertTriangle } from 'lucide-react'
 import { 
   SensorStatus, 
   isSystemMessage, 
@@ -70,6 +72,7 @@ export default function DashboardPage() {
   }, [])
 
   const { data, conn, deviceOnline } = useTelemetry(handleNewMessage, handleStatusChange)
+  const { alerts } = useAutoNarrative(data)
 
   // ─── Fallback while waiting for first payload ───
   if (!data) {
@@ -221,6 +224,17 @@ export default function DashboardPage() {
           </div>
         </motion.div>
       </div>
+
+      {/* ─── Proactive Alerts (Auto-Narrative) ─── */}
+      <motion.div variants={fadeUp} className="glass-card p-6 mt-6">
+        <div className="flex items-center gap-3 mb-4">
+          <AlertTriangle className="w-5 h-5 text-healy-warning" />
+          <h2 className="text-lg font-display font-semibold text-healy-graphite">
+            Proactive AI Alerts
+          </h2>
+        </div>
+        <AlertFeed alerts={alerts} />
+      </motion.div>
     </motion.div>
   )
 }
