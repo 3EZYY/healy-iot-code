@@ -1,7 +1,6 @@
 # Environment variables
 .env*
 !.env.example
-
 # Binary and build artifacts
 /bin/
 *.exe
