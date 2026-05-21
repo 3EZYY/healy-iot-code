@@ -67,7 +67,7 @@ export function AIInsightCard({ currentData }: AIInsightCardProps) {
           onClick={handleGenerateInsight}
           disabled={loading}
           className="flex items-center gap-1.5 bg-healy-ai-accent text-white text-xs font-medium
-                     px-3 py-1.5 rounded-lg hover:bg-violet-600 disabled:opacity-50
+                     px-3 py-1.5 rounded-lg hover:bg-teal-700 disabled:opacity-50
                      disabled:cursor-not-allowed transition-all duration-200"
         >
           <Sparkle size={14} />

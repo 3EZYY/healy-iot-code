@@ -19,11 +19,9 @@ export const COLORS = {
 
   border:        '#D4E8DF',  // Pale Sage
 
-  // Phase 10 Colors
-  deviceOnline:  '#22C55E',   // Green-500
-  deviceOffline: '#EF4444',   // Red-500
-  aiAccent:      '#7C3AED',   // Violet-700
-  aiSurface:     '#F5F3FF',   // Violet-50
+  // ─── AI TIER — v4.0.0 (Menggantikan Violet v3.0.0) ───
+  aiAccent:      '#0D9488',   // Clinical Teal
+  aiSurface:     '#F0FDFC',   // Teal-50
 } as const;
 
 // Blueprint §3.2 — Typography

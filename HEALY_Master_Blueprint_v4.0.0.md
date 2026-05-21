@@ -1654,14 +1654,14 @@ Semua file backend berstatus ✅ DONE. Tidak ada perubahan di Fase 12–15.
 | `components/ui/theme-toggle.tsx` | ✅ DONE | NEW — Light/Dark toggle button, lucide-react Sun/Moon (F-01) |
 | `tailwind.config.ts` | ⬜ N/A | Tailwind v4 — tidak ada config file, gunakan `@theme` di globals.css |
 | `app/history/page.tsx` | ⬜ TODO | MODIFY — 3 chart terpisah (F-03) |
-| `constants/design-tokens.ts` | ⬜ TODO | MODIFY — aiAccent teal, master v4.0 (F-02) |
+| `constants/design-tokens.ts` | ✅ DONE | MODIFY — aiAccent teal, master v4.0 (F-02) |
 | `types/chat.ts` | ⬜ TODO | NEW — ChatMessage, ChatContext (F-04) |
 | `types/telemetry.ts` | ⬜ TODO | MODIFY — tambah TelemetryChartPoint (F-03) |
 | `lib/groq-client.ts` | ⬜ TODO | MODIFY — tambah callGroqChat (F-04) |
 | `hooks/useChatbot.ts` | ⬜ TODO | NEW — chatbot state management (F-04) |
 | `components/features/NavSidebar.tsx` | ⬜ TODO | MODIFY — ChatbotTrigger button (F-04) |
-| `components/features/AIInsightCard.tsx` | ⬜ TODO | MODIFY — teal accent (F-02) |
-| `components/features/AlertFeed.tsx` | ⬜ TODO | MODIFY — teal accent (F-02) |
+| `components/features/AIInsightCard.tsx` | ✅ DONE | MODIFY — teal accent (F-02) |
+| `components/features/AlertFeed.tsx` | ✅ DONE | MODIFY — teal accent (F-02) |
 | `components/features/AIChatPanel.tsx` | ⬜ TODO | NEW — sliding chatbot panel (F-04) |
 | `components/features/TemperatureChart.tsx` | ⬜ TODO | NEW — standalone temp chart (F-03) |
 | `components/features/HeartRateChart.tsx` | ⬜ TODO | NEW — standalone BPM chart (F-03) |
