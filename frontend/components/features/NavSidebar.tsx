@@ -12,7 +12,8 @@ import {
   Key,
   Check,
   Eye,
-  EyeOff
+  EyeOff,
+  MessageCircle
 } from 'lucide-react'
 import { getStoredGroqKey, setStoredGroqKey, validateGroqKey } from '@/lib/groq-client'
 
@@ -22,7 +23,11 @@ const NAV_ITEMS = [
   { label: 'Settings',  href: '/settings',  icon: Settings },
 ]
 
-export default function NavSidebar() {
+interface NavSidebarProps {
+  onOpenChat?: () => void
+}
+
+export default function NavSidebar({ onOpenChat }: NavSidebarProps) {
   const pathname = usePathname()
   
   const [apiKey, setApiKey] = useState(() => getStoredGroqKey() || '')
@@ -110,6 +115,26 @@ export default function NavSidebar() {
           )
         })}
       </nav>
+
+      {/* Chatbot Trigger */}
+      <div className="px-4 py-2">
+        <button
+          onClick={() => {
+            if (onOpenChat) onOpenChat()
+            else window.dispatchEvent(new CustomEvent('open-ai-chat'))
+          }}
+          className="flex items-center gap-3 w-full px-4 py-3 rounded-xl
+                     text-healy-graphite hover:bg-healy-bg-alt
+                     hover:text-healy-sage transition-all duration-200"
+        >
+          <MessageCircle className="w-5 h-5 text-healy-ai-accent" aria-hidden="true" />
+          <span className="font-body text-sm font-medium">AI Health Chat</span>
+          <span className="ml-auto text-xs bg-healy-ai-accent/15 text-healy-ai-accent
+                           px-2 py-0.5 rounded-full font-mono font-bold">
+            AI
+          </span>
+        </button>
+      </div>
 
       {/* Groq Configuration */}
       <div className="p-4 border-t border-healy-border">

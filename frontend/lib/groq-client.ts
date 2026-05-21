@@ -102,3 +102,36 @@ export async function callGroqInsight(
   const json = await response.json()
   return json.choices?.[0]?.message?.content || ''
 }
+
+// ─── CHAT (MULTI-TURN) — digunakan useChatbot ───
+// callGroqChat adalah thin wrapper — logika streaming di-handle oleh useChatbot
+// karena chatbot membutuhkan kendali penuh atas state per-message
+
+export interface GroqChatMessage {
+  role:    'user' | 'assistant' | 'system'
+  content: string
+}
+
+export async function callGroqChat(
+  messages: GroqChatMessage[],
+  apiKey:   string,
+  signal?:  AbortSignal
+): Promise<Response> {
+  // Kembalikan raw Response agar caller bisa stream secara fleksibel
+  return fetch(GROQ_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model:       GROQ_MODEL,
+      messages,
+      max_tokens:  512,
+      stream:      true,
+      temperature: 0.4,
+    }),
+    signal,
+  })
+}
+

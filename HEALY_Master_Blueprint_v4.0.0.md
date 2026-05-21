@@ -62,7 +62,7 @@
 | F-01 | Light/Dark Mode — `next-themes` | Frontend-only | ✅ DONE |
 | F-02 | AI Accent: Violet → Clinical Teal `#0D9488` | Design Token | ✅ DONE (via F-01 globals.css) |
 | F-03 | Separated History Charts (3 line chart terpisah) | Frontend-only | ✅ DONE |
-| F-04 | Interactive AI Chatbot Context-Aware (Groq) | Frontend-only | TODO |
+| F-04 | Interactive AI Chatbot Context-Aware (Groq) | Frontend-only | ✅ DONE |
 
 ---
 

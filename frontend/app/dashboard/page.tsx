@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SensorCard from '@/components/features/SensorCard'
 import StatusChip from '@/components/features/StatusChip'
@@ -10,12 +10,15 @@ import { AIInsightCard } from '@/components/features/AIInsightCard'
 import AlertFeed from '@/components/features/AlertFeed'
 import { useTelemetry } from '@/hooks/useTelemetry'
 import { useAutoNarrative } from '@/hooks/useAutoNarrative'
+import { useChatbot } from '@/hooks/useChatbot'
+import { AIChatPanel } from '@/components/features/AIChatPanel'
 import { Activity, Clock, Bell, AlertTriangle } from 'lucide-react'
 import { 
   SensorStatus, 
   isSystemMessage, 
   WebSocketMessage 
 } from '@/types/telemetry'
+import type { ChatContext } from '@/types/chat'
 import type { GroqInsightRequest } from '@/lib/groq-client'
 
 // ─── Activity Log Entry ───
@@ -73,6 +76,21 @@ export default function DashboardPage() {
 
   const { data, conn, deviceOnline } = useTelemetry(handleNewMessage, handleStatusChange)
   const { alerts } = useAutoNarrative(data)
+  
+  // ─── Chatbot Hook ───
+  const {
+    isOpen, openChat, closeChat,
+    messages, isLoading,
+    inputValue, setInputValue,
+    sendMessage, clearHistory,
+  } = useChatbot()
+
+  // Listen for custom event from NavSidebar
+  useEffect(() => {
+    const handleOpen = () => openChat()
+    window.addEventListener('open-ai-chat', handleOpen)
+    return () => window.removeEventListener('open-ai-chat', handleOpen)
+  }, [openChat])
 
   // ─── Fallback while waiting for first payload ───
   if (!data) {
@@ -97,6 +115,16 @@ export default function DashboardPage() {
     bpm: data.sensor.bpm,
     spo2: data.sensor.spo2,
     status: data.status.overall,
+  }
+
+  const chatContext: ChatContext = {
+    temperature: data.sensor.temperature,
+    bpm: data.sensor.bpm,
+    spo2: data.sensor.spo2,
+    tempStatus: data.status.temperature,
+    spo2Status: data.status.spo2,
+    overallStatus: data.status.overall,
+    timestamp: new Date(data.timestamp).toLocaleString('id-ID'),
   }
 
   return (
@@ -235,6 +263,19 @@ export default function DashboardPage() {
         </div>
         <AlertFeed alerts={alerts} />
       </motion.div>
+
+      {/* ─── AI Chat Panel ─── */}
+      <AIChatPanel
+        isOpen={isOpen}
+        onClose={closeChat}
+        messages={messages}
+        isLoading={isLoading}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        onSend={(input) => sendMessage(input, chatContext)}
+        onClear={clearHistory}
+        context={chatContext}
+      />
     </motion.div>
   )
 }
